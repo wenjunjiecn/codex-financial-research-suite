@@ -1,7 +1,7 @@
 {
-  "name": "local-marketplace",
+  "name": "codex-financial-research-suite",
   "interface": {
-    "displayName": "Local Plugins"
+    "displayName": "Codex Financial Research Suite"
   },
   "plugins": [
     {

@@ -36,15 +36,45 @@ plugins/financial-research-suite/
 - `thesis-tracker`
 - `initiating-coverage`
 
-## Install As A Local Plugin
+## Quick Install
 
-Clone this repository somewhere on your machine, then point Codex to the repo-local marketplace:
+### Standard home-local install
 
-1. Ensure the repo exists locally.
-2. Use the marketplace file at `.agents/plugins/marketplace.json`.
-3. The plugin entry points to `./plugins/financial-research-suite`.
+Clone the repository and run the installer:
 
-If you prefer a home-local install, you can also copy or sync `plugins/financial-research-suite` into `~/plugins/financial-research-suite` and register it in `~/.agents/plugins/marketplace.json`.
+```bash
+git clone https://github.com/wenjunjiecn/codex-financial-research-suite.git
+cd codex-financial-research-suite
+bash scripts/install-home-local.sh
+```
+
+This does three things:
+
+- links `plugins/financial-research-suite` into `~/plugins/financial-research-suite`
+- creates or updates `~/.agents/plugins/marketplace.json`
+- registers the plugin as `financial-research-suite@codex-financial-research-suite`
+
+### Repo-local install
+
+If you want to keep the plugin repo-scoped instead of home-scoped, use the marketplace file already included in this repository:
+
+```text
+.agents/plugins/marketplace.json
+```
+
+The repo-local marketplace name is `codex-financial-research-suite` and the plugin entry points to:
+
+```text
+./plugins/financial-research-suite
+```
+
+### What to install in Codex
+
+After the local marketplace is available, install:
+
+```text
+financial-research-suite@codex-financial-research-suite
+```
 
 ## What The Plugin Covers
 
