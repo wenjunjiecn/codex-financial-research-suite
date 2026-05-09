@@ -31,7 +31,6 @@
     "node": ">=18"
   },
   "publishConfig": {
-    "provenance": true,
     "registry": "https://registry.npmjs.org"
   }
 }
