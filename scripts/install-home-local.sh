@@ -58,6 +58,18 @@ else:
 marketplace_path.write_text(json.dumps(payload, indent=2) + "\n")
 PY
 
+ACTUAL_MARKETPLACE_NAME="$(python3 - "$TARGET_MARKETPLACE" "$MARKETPLACE_NAME" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+fallback = sys.argv[2]
+payload = json.loads(path.read_text())
+print(payload.get("name", fallback))
+PY
+)"
+
 echo "Installed $PLUGIN_NAME to $TARGET_PLUGIN_DIR"
 echo "Updated marketplace: $TARGET_MARKETPLACE"
-echo "Plugin install target: $PLUGIN_NAME@$MARKETPLACE_NAME"
+echo "Plugin install target: $PLUGIN_NAME@$ACTUAL_MARKETPLACE_NAME"

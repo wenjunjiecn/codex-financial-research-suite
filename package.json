@@ -1,0 +1,25 @@
+{
+  "name": "codex-financial-research-suite-installer",
+  "version": "0.1.0",
+  "description": "NPM installer for the Codex Financial Research Suite plugin.",
+  "license": "Apache-2.0",
+  "bin": {
+    "codex-financial-research-suite": "./bin/codex-financial-research-suite.js"
+  },
+  "files": [
+    "bin",
+    "plugins",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "codex",
+    "plugin",
+    "skills",
+    "finance",
+    "equity-research"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

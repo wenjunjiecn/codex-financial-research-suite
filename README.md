@@ -38,6 +38,35 @@ plugins/financial-research-suite/
 
 ## Quick Install
 
+### NPM installer
+
+Use `npx` to install the plugin into your home-local Codex plugin directory:
+
+```bash
+npx codex-financial-research-suite-installer install
+```
+
+Useful companion commands:
+
+```bash
+npx codex-financial-research-suite-installer doctor
+npx codex-financial-research-suite-installer uninstall
+```
+
+The npm installer:
+
+- copies the plugin into `~/plugins/financial-research-suite`
+- creates or updates `~/.agents/plugins/marketplace.json`
+- registers the plugin in your home-local marketplace
+
+If `~/.agents/plugins/marketplace.json` does not already exist, the installer creates a marketplace named `codex-financial-research-suite`, so the install target becomes:
+
+```text
+financial-research-suite@codex-financial-research-suite
+```
+
+If you already have a home-local marketplace, the plugin keeps that existing marketplace name and the installer prints the exact install target after setup.
+
 ### Standard home-local install
 
 Clone the repository and run the installer:
@@ -52,7 +81,7 @@ This does three things:
 
 - links `plugins/financial-research-suite` into `~/plugins/financial-research-suite`
 - creates or updates `~/.agents/plugins/marketplace.json`
-- registers the plugin as `financial-research-suite@codex-financial-research-suite`
+- registers the plugin in your home-local marketplace
 
 ### Repo-local install
 
@@ -70,7 +99,7 @@ The repo-local marketplace name is `codex-financial-research-suite` and the plug
 
 ### What to install in Codex
 
-After the local marketplace is available, install:
+After the local marketplace is available, install the plugin using the marketplace name printed by the installer. On a clean setup, that target is:
 
 ```text
 financial-research-suite@codex-financial-research-suite
