@@ -67,6 +67,32 @@ financial-research-suite@codex-financial-research-suite
 
 If you already have a home-local marketplace, the plugin keeps that existing marketplace name and the installer prints the exact install target after setup.
 
+## Publish To npm With GitHub Actions
+
+This repository includes a GitHub Actions workflow at `.github/workflows/publish-npm.yml` that publishes the npm package when a GitHub Release is published.
+
+### One-time npm setup
+
+Before the workflow can publish, configure npm trusted publishing for this package:
+
+1. Open npm package settings for `codex-financial-research-suite-installer`
+2. Go to the trusted publisher section
+3. Add GitHub Actions as the publisher
+4. Use:
+   - GitHub owner: `wenjunjiecn`
+   - Repository: `codex-financial-research-suite`
+
+This repo uses npm trusted publishing with GitHub OIDC, so you do not need to store an `NPM_TOKEN` secret in GitHub.
+
+### Release flow
+
+1. Update `package.json` version
+2. Push to `main`
+3. Create a GitHub Release
+4. The workflow publishes the package to npm automatically
+
+You can also trigger the workflow manually from the GitHub Actions tab with `workflow_dispatch`.
+
 ### Standard home-local install
 
 Clone the repository and run the installer:
