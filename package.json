@@ -1,18 +1,18 @@
 {
-  "name": "codex-financial-research-suite-installer",
+  "name": "codex-finance",
   "version": "0.1.0",
-  "description": "NPM installer for the Codex Financial Research Suite plugin.",
-  "homepage": "https://github.com/wenjunjiecn/codex-financial-research-suite",
+  "description": "NPM installer for the Codex Finance plugin.",
+  "homepage": "https://github.com/wenjunjiecn/codex-finance",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wenjunjiecn/codex-financial-research-suite.git"
+    "url": "git+https://github.com/wenjunjiecn/codex-finance.git"
   },
   "bugs": {
-    "url": "https://github.com/wenjunjiecn/codex-financial-research-suite/issues"
+    "url": "https://github.com/wenjunjiecn/codex-finance/issues"
   },
   "bin": {
-    "codex-financial-research-suite": "bin/codex-financial-research-suite.js"
+    "codex-finance": "bin/codex-finance.js"
   },
   "files": [
     "bin",

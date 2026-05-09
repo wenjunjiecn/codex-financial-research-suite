@@ -1,14 +1,14 @@
-# Codex Financial Research Suite
+# Codex Finance
 
 A local Codex plugin and skill bundle for financial analysis and equity research.
 
-This repository packages a Codex plugin named `financial-research-suite` with 15 reusable skills covering valuation, earnings workflows, sector research, and idea generation.
+This repository packages a Codex plugin named `codex-finance` with 15 reusable skills covering valuation, earnings workflows, sector research, and idea generation.
 
 ## Repository Layout
 
 ```text
 .agents/plugins/marketplace.json
-plugins/financial-research-suite/
+plugins/codex-finance/
   .codex-plugin/plugin.json
   skills/
 ```
@@ -43,26 +43,26 @@ plugins/financial-research-suite/
 Use `npx` to install the plugin into your home-local Codex plugin directory:
 
 ```bash
-npx codex-financial-research-suite-installer install
+npx codex-finance install
 ```
 
 Useful companion commands:
 
 ```bash
-npx codex-financial-research-suite-installer doctor
-npx codex-financial-research-suite-installer uninstall
+npx codex-finance doctor
+npx codex-finance uninstall
 ```
 
 The npm installer:
 
-- copies the plugin into `~/plugins/financial-research-suite`
+- copies the plugin into `~/plugins/codex-finance`
 - creates or updates `~/.agents/plugins/marketplace.json`
 - registers the plugin in your home-local marketplace
 
-If `~/.agents/plugins/marketplace.json` does not already exist, the installer creates a marketplace named `codex-financial-research-suite`, so the install target becomes:
+If `~/.agents/plugins/marketplace.json` does not already exist, the installer creates a marketplace named `codex-finance`, so the install target becomes:
 
 ```text
-financial-research-suite@codex-financial-research-suite
+codex-finance@codex-finance
 ```
 
 If you already have a home-local marketplace, the plugin keeps that existing marketplace name and the installer prints the exact install target after setup.
@@ -75,12 +75,12 @@ This repository includes a GitHub Actions workflow at `.github/workflows/publish
 
 Before the workflow can publish, configure npm trusted publishing for this package:
 
-1. Open npm package settings for `codex-financial-research-suite-installer`
+1. Open npm package settings for `codex-finance`
 2. Go to the trusted publisher section
 3. Add GitHub Actions as the publisher
 4. Use:
    - GitHub owner: `wenjunjiecn`
-   - Repository: `codex-financial-research-suite`
+   - Repository: `codex-finance`
 
 This repo uses npm trusted publishing with GitHub OIDC, so you do not need to store an `NPM_TOKEN` secret in GitHub.
 
@@ -98,14 +98,14 @@ You can also trigger the workflow manually from the GitHub Actions tab with `wor
 Clone the repository and run the installer:
 
 ```bash
-git clone https://github.com/wenjunjiecn/codex-financial-research-suite.git
-cd codex-financial-research-suite
+git clone https://github.com/wenjunjiecn/codex-finance.git
+cd codex-finance
 bash scripts/install-home-local.sh
 ```
 
 This does three things:
 
-- links `plugins/financial-research-suite` into `~/plugins/financial-research-suite`
+- links `plugins/codex-finance` into `~/plugins/codex-finance`
 - creates or updates `~/.agents/plugins/marketplace.json`
 - registers the plugin in your home-local marketplace
 
@@ -117,10 +117,10 @@ If you want to keep the plugin repo-scoped instead of home-scoped, use the marke
 .agents/plugins/marketplace.json
 ```
 
-The repo-local marketplace name is `codex-financial-research-suite` and the plugin entry points to:
+The repo-local marketplace name is `codex-finance` and the plugin entry points to:
 
 ```text
-./plugins/financial-research-suite
+./plugins/codex-finance
 ```
 
 ### What to install in Codex
@@ -128,7 +128,7 @@ The repo-local marketplace name is `codex-financial-research-suite` and the plug
 After the local marketplace is available, install the plugin using the marketplace name printed by the installer. On a clean setup, that target is:
 
 ```text
-financial-research-suite@codex-financial-research-suite
+codex-finance@codex-finance
 ```
 
 ## What The Plugin Covers

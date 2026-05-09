@@ -1,14 +1,14 @@
 {
-  "name": "codex-financial-research-suite",
+  "name": "codex-finance",
   "interface": {
-    "displayName": "Codex Financial Research Suite"
+    "displayName": "Codex Finance"
   },
   "plugins": [
     {
-      "name": "financial-research-suite",
+      "name": "codex-finance",
       "source": {
         "source": "local",
-        "path": "./plugins/financial-research-suite"
+        "path": "./plugins/codex-finance"
       },
       "policy": {
         "installation": "AVAILABLE",

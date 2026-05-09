@@ -5,10 +5,12 @@ const os = require("os");
 const path = require("path");
 
 const PACKAGE_ROOT = path.resolve(__dirname, "..");
-const PLUGIN_NAME = "financial-research-suite";
-const MARKETPLACE_NAME = "codex-financial-research-suite";
+const PLUGIN_NAME = "codex-finance";
+const MARKETPLACE_NAME = "codex-finance";
+const LEGACY_PLUGIN_NAME = "financial-research-suite";
 const SOURCE_PLUGIN_DIR = path.join(PACKAGE_ROOT, "plugins", PLUGIN_NAME);
 const TARGET_PLUGIN_DIR = path.join(os.homedir(), "plugins", PLUGIN_NAME);
+const LEGACY_PLUGIN_DIR = path.join(os.homedir(), "plugins", LEGACY_PLUGIN_NAME);
 const TARGET_MARKETPLACE = path.join(
   os.homedir(),
   ".agents",
@@ -18,9 +20,9 @@ const TARGET_MARKETPLACE = path.join(
 
 function printUsage() {
   console.log(`Usage:
-  codex-financial-research-suite install
-  codex-financial-research-suite uninstall
-  codex-financial-research-suite doctor
+  codex-finance install
+  codex-finance uninstall
+  codex-finance doctor
 `);
 }
 
@@ -64,23 +66,27 @@ function buildEntry() {
 
 function install() {
   ensureDir(path.dirname(TARGET_PLUGIN_DIR));
+  fs.rmSync(LEGACY_PLUGIN_DIR, { recursive: true, force: true });
   fs.rmSync(TARGET_PLUGIN_DIR, { recursive: true, force: true });
   fs.cpSync(SOURCE_PLUGIN_DIR, TARGET_PLUGIN_DIR, { recursive: true });
 
   const payload = readMarketplace();
   const plugins = Array.isArray(payload.plugins) ? payload.plugins : [];
   const entry = buildEntry();
-  const existingIndex = plugins.findIndex(
+  const filtered = plugins.filter(
+    (plugin) => plugin && plugin.name !== LEGACY_PLUGIN_NAME,
+  );
+  const existingIndex = filtered.findIndex(
     (plugin) => plugin && plugin.name === PLUGIN_NAME,
   );
 
   if (existingIndex >= 0) {
-    plugins[existingIndex] = entry;
+    filtered[existingIndex] = entry;
   } else {
-    plugins.push(entry);
+    filtered.push(entry);
   }
 
-  payload.plugins = plugins;
+  payload.plugins = filtered;
   if (!payload.name) {
     payload.name = MARKETPLACE_NAME;
   }

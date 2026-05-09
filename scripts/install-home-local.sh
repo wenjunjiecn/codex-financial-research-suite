@@ -2,19 +2,22 @@
 
 set -euo pipefail
 
-PLUGIN_NAME="financial-research-suite"
-MARKETPLACE_NAME="codex-financial-research-suite"
+PLUGIN_NAME="codex-finance"
+MARKETPLACE_NAME="codex-finance"
+LEGACY_PLUGIN_NAME="financial-research-suite"
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SOURCE_PLUGIN_DIR="$REPO_ROOT/plugins/$PLUGIN_NAME"
 TARGET_PLUGIN_DIR="$HOME/plugins/$PLUGIN_NAME"
+LEGACY_PLUGIN_DIR="$HOME/plugins/$LEGACY_PLUGIN_NAME"
 TARGET_MARKETPLACE="$HOME/.agents/plugins/marketplace.json"
 
 mkdir -p "$HOME/plugins"
 mkdir -p "$(dirname "$TARGET_MARKETPLACE")"
 
+rm -rf "$LEGACY_PLUGIN_DIR"
 ln -sfn "$SOURCE_PLUGIN_DIR" "$TARGET_PLUGIN_DIR"
 
-python3 - "$TARGET_MARKETPLACE" "$PLUGIN_NAME" "$MARKETPLACE_NAME" <<'PY'
+python3 - "$TARGET_MARKETPLACE" "$PLUGIN_NAME" "$MARKETPLACE_NAME" "$LEGACY_PLUGIN_NAME" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -22,6 +25,7 @@ from pathlib import Path
 marketplace_path = Path(sys.argv[1]).expanduser()
 plugin_name = sys.argv[2]
 marketplace_name = sys.argv[3]
+legacy_plugin_name = sys.argv[4]
 
 entry = {
     "name": plugin_name,
@@ -48,6 +52,11 @@ else:
     }
 
 plugins = payload.setdefault("plugins", [])
+plugins = [
+    existing
+    for existing in plugins
+    if not (isinstance(existing, dict) and existing.get("name") == legacy_plugin_name)
+]
 for i, existing in enumerate(plugins):
     if isinstance(existing, dict) and existing.get("name") == plugin_name:
         plugins[i] = entry
@@ -55,6 +64,7 @@ for i, existing in enumerate(plugins):
 else:
     plugins.append(entry)
 
+payload["plugins"] = plugins
 marketplace_path.write_text(json.dumps(payload, indent=2) + "\n")
 PY
 

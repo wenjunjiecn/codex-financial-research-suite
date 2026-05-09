@@ -1,5 +1,5 @@
 {
-  "name": "financial-research-suite",
+  "name": "codex-finance",
   "version": "0.1.0",
   "description": "Financial analysis and equity research skills for valuation, earnings, sector work, and idea generation.",
   "author": {
@@ -15,8 +15,8 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Financial Research Suite",
-    "shortDescription": "Valuation and equity research skills for Codex.",
+    "displayName": "Codex Finance",
+    "shortDescription": "Finance and equity research skills for Codex.",
     "longDescription": "A local Codex plugin that bundles financial analysis and equity research skills covering comps, DCF, LBO, three-statement modeling, earnings workflows, sector research, thesis tracking, catalysts, and initiation work.",
     "developerName": "Wenjunjie",
     "category": "Finance",
